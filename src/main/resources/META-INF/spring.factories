@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=br.gov.es.pmo.obligation_parser.config.ObligationParserAutoConfig

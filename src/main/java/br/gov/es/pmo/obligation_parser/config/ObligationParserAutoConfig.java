@@ -1,0 +1,3 @@
+package br.gov.es.pmo.obligation_parser.config;
+import br.gov.es.pmo.obligation_parser.properties.PentahoObligationProperties; import org.springframework.boot.context.properties.EnableConfigurationProperties; import org.springframework.context.annotation.ComponentScan; import org.springframework.context.annotation.Configuration; import org.springframework.context.annotation.PropertySource;
+@Configuration @ComponentScan("br.gov.es.pmo.obligation_parser") @EnableConfigurationProperties(PentahoObligationProperties.class) @PropertySource("classpath:obligation-parser.properties") public class ObligationParserAutoConfig {}
