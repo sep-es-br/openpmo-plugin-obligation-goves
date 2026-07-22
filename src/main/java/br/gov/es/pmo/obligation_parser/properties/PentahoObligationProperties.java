@@ -7,6 +7,7 @@ public class PentahoObligationProperties {
     private String baseUrl;
     private String userId;
     private String password;
+    private int maxInMemorySize = 16777216;
     private String obligationYearsPath;
     private String obligationYearsDataAccessId;
     private String obligationManagementUnitsPath;
@@ -22,6 +23,8 @@ public class PentahoObligationProperties {
     public void setUserId(String value) { userId = value; }
     public String getPassword() { return password; }
     public void setPassword(String value) { password = value; }
+    public int getMaxInMemorySize() { return maxInMemorySize; }
+    public void setMaxInMemorySize(int value) { maxInMemorySize = value; }
     public String getObligationYearsPath() { return obligationYearsPath; }
     public void setObligationYearsPath(String value) { obligationYearsPath = value; }
     public String getObligationYearsDataAccessId() { return obligationYearsDataAccessId; }

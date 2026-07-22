@@ -4,7 +4,7 @@ import org.springframework.core.env.Environment; import org.springframework.http
 import java.util.List; import java.util.stream.Collectors;
 @Component public class PentahoObligationProvider implements IObligationProvider {
  private static final String ENDPOINT="/pentaho/plugin/cda/api/doQuery"; private final PentahoObligationProperties props; private final Environment env; private final WebClient client;
- public PentahoObligationProvider(PentahoObligationProperties p,Environment e){props=p;env=e;client=WebClient.builder().baseUrl(p.getBaseUrl()).build();}
+ public PentahoObligationProvider(PentahoObligationProperties p,Environment e){props=p;env=e;client=WebClient.builder().baseUrl(p.getBaseUrl()).codecs(c->c.defaultCodecs().maxInMemorySize(p.getMaxInMemorySize())).build();}
  public List<Long> getYears(){return query(props.getObligationYearsPath(),props.getObligationYearsDataAccessId(),null).getResultset().stream().map(r->Long.valueOf(v(r,0))).collect(Collectors.toList());}
  public List<ObligationManagementUnitDto> getManagementUnits(Long year){return query(props.getObligationManagementUnitsPath(),props.getObligationManagementUnitsDataAccessId(),new String[][]{{"paramp_ano",year.toString()}}).getResultset().stream().map(r->new ObligationManagementUnitDto(v(r,0),v(r,1))).collect(Collectors.toList());}
  public List<ObligationDto> getObligations(Long year,ObligationManagementUnitDto u){return query(props.getObligationProcessesPath(),props.getObligationProcessesDataAccessId(),new String[][]{{"paramp_ano",year.toString()},{"paramp_cod_ug",u.getCode()}}).getResultset().stream().map(r->map(r,year,u)).collect(Collectors.toList());}
