@@ -7,14 +7,14 @@ public class PentahoObligationProperties {
     private String baseUrl;
     private String userId;
     private String password;
-    private String yearsPath;
-    private String yearsDataAccessId;
-    private String managementUnitsPath;
-    private String managementUnitsDataAccessId;
-    private String processesPath;
-    private String processesDataAccessId;
-    private String obligationPath;
-    private String obligationDataAccessId;
+    private String obligationYearsPath;
+    private String obligationYearsDataAccessId;
+    private String obligationManagementUnitsPath;
+    private String obligationManagementUnitsDataAccessId;
+    private String obligationProcessesPath;
+    private String obligationProcessesDataAccessId;
+    private String obligationDetailPath;
+    private String obligationDetailDataAccessId;
 
     public String getBaseUrl() { return baseUrl; }
     public void setBaseUrl(String value) { baseUrl = value; }
@@ -22,20 +22,20 @@ public class PentahoObligationProperties {
     public void setUserId(String value) { userId = value; }
     public String getPassword() { return password; }
     public void setPassword(String value) { password = value; }
-    public String getYearsPath() { return yearsPath; }
-    public void setYearsPath(String value) { yearsPath = value; }
-    public String getYearsDataAccessId() { return yearsDataAccessId; }
-    public void setYearsDataAccessId(String value) { yearsDataAccessId = value; }
-    public String getManagementUnitsPath() { return managementUnitsPath; }
-    public void setManagementUnitsPath(String value) { managementUnitsPath = value; }
-    public String getManagementUnitsDataAccessId() { return managementUnitsDataAccessId; }
-    public void setManagementUnitsDataAccessId(String value) { managementUnitsDataAccessId = value; }
-    public String getProcessesPath() { return processesPath; }
-    public void setProcessesPath(String value) { processesPath = value; }
-    public String getProcessesDataAccessId() { return processesDataAccessId; }
-    public void setProcessesDataAccessId(String value) { processesDataAccessId = value; }
-    public String getObligationPath() { return obligationPath; }
-    public void setObligationPath(String value) { obligationPath = value; }
-    public String getObligationDataAccessId() { return obligationDataAccessId; }
-    public void setObligationDataAccessId(String value) { obligationDataAccessId = value; }
+    public String getObligationYearsPath() { return obligationYearsPath; }
+    public void setObligationYearsPath(String value) { obligationYearsPath = value; }
+    public String getObligationYearsDataAccessId() { return obligationYearsDataAccessId; }
+    public void setObligationYearsDataAccessId(String value) { obligationYearsDataAccessId = value; }
+    public String getObligationManagementUnitsPath() { return obligationManagementUnitsPath; }
+    public void setObligationManagementUnitsPath(String value) { obligationManagementUnitsPath = value; }
+    public String getObligationManagementUnitsDataAccessId() { return obligationManagementUnitsDataAccessId; }
+    public void setObligationManagementUnitsDataAccessId(String value) { obligationManagementUnitsDataAccessId = value; }
+    public String getObligationProcessesPath() { return obligationProcessesPath; }
+    public void setObligationProcessesPath(String value) { obligationProcessesPath = value; }
+    public String getObligationProcessesDataAccessId() { return obligationProcessesDataAccessId; }
+    public void setObligationProcessesDataAccessId(String value) { obligationProcessesDataAccessId = value; }
+    public String getObligationDetailPath() { return obligationDetailPath; }
+    public void setObligationDetailPath(String value) { obligationDetailPath = value; }
+    public String getObligationDetailDataAccessId() { return obligationDetailDataAccessId; }
+    public void setObligationDetailDataAccessId(String value) { obligationDetailDataAccessId = value; }
 }
