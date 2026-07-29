@@ -1,6 +1,6 @@
 package br.gov.es.pmo.obligation_parser.service;
 import br.gov.es.pmo.obligation_core.model.*; import br.gov.es.pmo.obligation_parser.model.PentahoQueryResponse; import br.gov.es.pmo.obligation_parser.properties.PentahoObligationProperties;
-import org.springframework.core.env.Environment; import org.springframework.http.HttpHeaders; import org.springframework.stereotype.Component; import org.springframework.util.StringUtils; import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.core.env.Environment; import org.springframework.http.HttpHeaders; import org.springframework.stereotype.Component; import org.springframework.util.StringUtils; import org.springframework.web.reactive.function.client.WebClient; import org.springframework.web.util.HtmlUtils;
 import java.util.List; import java.util.stream.Collectors;
 @Component public class PentahoObligationProvider implements IObligationProvider {
  private static final String ENDPOINT="/pentaho/plugin/cda/api/doQuery"; private final PentahoObligationProperties props; private final Environment env; private final WebClient client;
@@ -12,5 +12,5 @@ import java.util.List; import java.util.stream.Collectors;
  private ObligationDto map(List<Object>r,Long year,ObligationManagementUnitDto u){ObligationDto d=new ObligationDto();d.setProcessId(v(r,0));d.setProcessNumber(v(r,1));d.setAmount(v(r,2));d.setSupplierCnpj(v(r,3));d.setDescription(v(r,4));d.setProtocol(v(r,1));d.setYear(year!=null?year:(r.size()>5?Long.valueOf(v(r,5)):null));d.setManagementUnitCode(u.getCode());d.setManagementUnitName(u.getName());return d;}
  private PentahoQueryResponse query(String path,String access,String[][] params){credentials();return client.get().uri(b->{b.path(ENDPOINT).queryParam("path",path).queryParam("dataAccessId",access);if(params!=null)for(String[]p:params)b.queryParam(p[0],p[1]);return b.build();}).headers(this::auth).retrieve().bodyToMono(PentahoQueryResponse.class).block();}
  private void auth(HttpHeaders h){h.setBasicAuth(user(),password());} private void credentials(){if(!StringUtils.hasText(user())||!StringUtils.hasText(password()))throw new IllegalStateException("Credenciais do Pentaho nao configuradas");}
- private String user(){return StringUtils.hasText(props.getUserId())?props.getUserId():env.getProperty("pentahoBI.userId");} private String password(){return StringUtils.hasText(props.getPassword())?props.getPassword():env.getProperty("pentahoBI.password");} private static String v(List<Object>r,int i){Object x=r.get(i);return x==null?null:String.valueOf(x);}
+ private String user(){return StringUtils.hasText(props.getUserId())?props.getUserId():env.getProperty("pentahoBI.userId");} private String password(){return StringUtils.hasText(props.getPassword())?props.getPassword():env.getProperty("pentahoBI.password");} private static String v(List<Object>r,int i){Object x=r.get(i);return x==null?null:HtmlUtils.htmlUnescape(String.valueOf(x));}
 }
